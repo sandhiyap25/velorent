@@ -1,85 +1,302 @@
-# VeloRent — Peer-to-Peer Vehicle Rental Platform
+# 🚗 VeloRent — Peer-to-Peer Vehicle Rental Platform
 
-VeloRent is a full-stack vehicle rental marketplace where users can list
-their own vehicles for rent and book vehicles listed by others. It handles
-listings, bookings, availability scheduling, security deposits, and
-damage/incident reporting.
+**VeloRent** is a full-stack peer-to-peer vehicle rental platform that allows users to **list their own vehicles for rent** and **book vehicles listed by other users**.
 
-## Tech Stack
+The platform manages the complete rental workflow, including vehicle listings, availability, bookings, security deposits, returns, late fees, and incident reporting.
 
-Frontend: React 19 + TypeScript + Vite + Tailwind CSS
-Backend:  PHP 8 (PDO) REST API
-Database: MySQL / MariaDB (via XAMPP)
+---
 
-## Features
+## ✨ Key Features
 
-- User signup/login with token-based auth
-- List a vehicle with multiple uploaded photos
-- Create, view, update, and delete vehicle listings (My Fleet)
-- Real-time availability — shows "Booked now" vs "Available" based on
-  actual bookings, not just a static status
-- Auto-suggested pickup/return time based on current time and existing
-  bookings
-- Book a vehicle with live price calculation (hourly rate x duration +
-  security deposit)
-- Return flow with condition notes and late-fee calculation
-- Incident reporting (damage, theft, non-return) with evidence upload
-- Notifications for bookings, returns, and incidents
-- Admin role for platform oversight
+### 👤 User Management
 
-## Project Structure
+* User registration and login
+* Token-based authentication
+* Customer and Admin roles
+* Users can act as both **vehicle owners and renters**
 
+### 🚘 Vehicle Management
+
+* Add and manage vehicle listings
+* Upload multiple vehicle photos
+* View, edit, and delete listings
+* **My Fleet** section for vehicle owners
+* Real-time vehicle availability based on active bookings
+
+### 📅 Booking & Availability
+
+* View available vehicles
+* Automatic pickup and return time suggestions
+* Prevents booking conflicts with existing reservations
+* Live rental price calculation
+* Security deposit calculation
+
+**Rental Cost = Hourly Rate × Rental Duration + Security Deposit**
+
+### 🔄 Vehicle Return
+
+* Record vehicle return
+* Add vehicle condition notes
+* Calculate late-return charges
+* Track completed rentals
+
+### ⚠️ Incident Management
+
+* Report vehicle damage
+* Report theft or non-return
+* Upload supporting evidence
+* Track reported incidents
+
+### 🔔 Notifications
+
+Notifications are generated for:
+
+* New bookings
+* Vehicle returns
+* Incidents and reports
+
+### 🛡️ Admin Management
+
+* Admin dashboard
+* Platform oversight
+* Manage users, vehicles, bookings, and incidents
+
+---
+
+## 🛠️ Tech Stack
+
+| Layer           | Technology                 |
+| --------------- | -------------------------- |
+| Frontend        | React 19, TypeScript, Vite |
+| Styling         | Tailwind CSS               |
+| Backend         | PHP 8                      |
+| API             | REST API                   |
+| Database        | MySQL / MariaDB            |
+| Database Access | PDO                        |
+| Local Server    | XAMPP                      |
+
+---
+
+## 📂 Project Structure
+
+```text
 OnlineVR/
-├── backend/              PHP REST API (place inside XAMPP htdocs)
-│   ├── api/               Endpoints: auth, vehicles, bookings, incidents, uploads
-│   ├── config/            Database connection + CORS/JSON helpers
-│   ├── middleware/        Auth middleware
-│   └── utils/             Shared helper functions
+│
+├── backend/
+│   ├── api/
+│   │   ├── auth/
+│   │   ├── vehicles/
+│   │   ├── bookings/
+│   │   ├── incidents/
+│   │   └── uploads/
+│   │
+│   ├── config/
+│   │   ├── Database connection
+│   │   └── CORS / JSON helpers
+│   │
+│   ├── middleware/
+│   │   └── Authentication middleware
+│   │
+│   └── utils/
+│       └── Shared helper functions
+│
 ├── database/
-│   ├── schema.sql                        Full DB schema + seed data
-│   └── migration_soft_delete_vehicles.sql  Run once if upgrading an older DB
-├── src/                   React frontend source
-└── package.json
+│   ├── schema.sql
+│   └── migration_soft_delete_vehicles.sql
+│
+├── src/
+│   └── React frontend source
+│
+├── package.json
+└── .env.example
+```
 
-## Local Setup (XAMPP)
+---
 
-1. Start XAMPP
-   Open XAMPP Control Panel, start Apache and MySQL.
+# 🚀 Local Setup
 
-2. Import the database
-   Open http://localhost/phpmyadmin
-   Import tab -> choose database/schema.sql -> Go
-   This creates the velorent_db database with all tables and seed data.
+## 1. Start XAMPP
 
-3. Place the backend in htdocs
-   Copy the "backend" folder into:
-     Windows: C:\xampp\htdocs\OnlineVR\backend
-     macOS:   /Applications/XAMPP/htdocs/OnlineVR/backend
+Open **XAMPP Control Panel** and start:
 
-   Check it works by opening in a browser:
-     http://localhost/OnlineVR/backend/api/state/bootstrap.php
-   You should see JSON with "success": true
+* Apache
+* MySQL
 
-4. Configure the frontend
-   Copy .env.example to .env and set:
-     VITE_API_BASE_URL="http://localhost/OnlineVR/backend/api"
+---
 
-5. Run the frontend
-     npm install
-     npm run dev
-   Open http://localhost:3000
+## 2. Create the Database
 
-## Test Accounts (password: "password" for all)
+Open:
 
-Customer (Host & Renter): arjun.mehta@example.in
-Customer (Host & Renter): priya.nair@example.in
-Platform Admin:           admin@velorent.in
+```text
+http://localhost/phpmyadmin
+```
+
+Go to **Import → Choose File** and select:
+
+```text
+database/schema.sql
+```
+
+Click **Go**.
+
+This will create the:
+
+```text
+velorent_db
+```
+
+database along with the required tables and seed data.
+
+---
+
+## 3. Configure the Backend
+
+Copy the `backend` folder into the XAMPP `htdocs` directory.
+
+### Windows
+
+```text
+C:\xampp\htdocs\OnlineVR\backend
+```
+
+### macOS
+
+```text
+/Applications/XAMPP/htdocs/OnlineVR/backend
+```
+
+---
+
+## 4. Test the Backend
+
+Open the following URL in your browser:
+
+```text
+http://localhost/OnlineVR/backend/api/state/bootstrap.php
+```
+
+A successful setup should return JSON similar to:
+
+```json
+{
+  "success": true
+}
+```
+
+---
+
+## 5. Configure the Frontend
+
+Create a `.env` file from `.env.example`.
+
+Set the API URL:
+
+```env
+VITE_API_BASE_URL=http://localhost/OnlineVR/backend/api
+```
+
+---
+
+## 6. Install Dependencies
+
+Open the project folder in the terminal:
+
+```bash
+npm install
+```
+
+---
+
+## 7. Start the Frontend
+
+```bash
+npm run dev
+```
+
+Open the URL shown by Vite, usually:
+
+```text
+http://localhost:3000
+```
+
+---
 
 
-## Notes
+---
 
-- backend/uploads/ stores real photos uploaded through the app at runtime.
- 
-- If you're upgrading a database created before vehicle soft-delete was
-  added, run database/migration_soft_delete_vehicles.sql once in
-  phpMyAdmin.
+# 🗄️ Database Migration
+
+If you are upgrading an older VeloRent database where **vehicle soft-delete** was not previously implemented, run:
+
+```text
+database/migration_soft_delete_vehicles.sql
+```
+
+You only need to run this migration once.
+
+---
+
+# 📸 Vehicle Photos
+
+Uploaded vehicle photos are stored at runtime in:
+
+```text
+backend/uploads/
+```
+
+Make sure this directory has appropriate write permissions when running the application locally.
+
+---
+
+# 🔄 Application Workflow
+
+```text
+User Registration / Login
+          ↓
+    Browse Vehicles
+          ↓
+    Check Availability
+          ↓
+       Book Vehicle
+          ↓
+    Vehicle Pickup
+          ↓
+      Rental Period
+          ↓
+     Return Vehicle
+          ↓
+ Condition Verification
+          ↓
+ Late Fee / Incident Check
+          ↓
+    Booking Completed
+```
+
+---
+
+## 🎯 Project Objective
+
+The main objective of VeloRent is to provide a **secure and convenient peer-to-peer vehicle rental system** where vehicle owners can generate income from their vehicles while renters can easily discover and book available vehicles.
+
+The system focuses on **real-time availability, automated rental calculations, secure booking management, and incident tracking**.
+
+---
+
+## 📌 Future Enhancements
+
+* Online payment gateway integration
+* GPS-based vehicle tracking
+* Advanced identity verification
+* AI-based vehicle damage detection
+* Mobile application
+* Rating and review system
+* Automated fraud detection
+
+---
+
+## 👩‍💻 Developed As
+
+**VeloRent — Full-Stack Web Application**
+
+Built using **React, TypeScript, PHP, MySQL, and XAMPP**.
