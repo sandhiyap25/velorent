@@ -1,4 +1,4 @@
-# 🚗 VeloRent — Peer-to-Peer Vehicle Rental Platform
+#  VeloRent — Peer-to-Peer Vehicle Rental Platform
 
 **VeloRent** is a full-stack peer-to-peer vehicle rental platform that allows users to **list their own vehicles for rent** and **book vehicles listed by other users**.
 
