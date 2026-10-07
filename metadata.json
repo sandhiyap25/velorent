@@ -1,0 +1,6 @@
+{
+  "name": "VeloRent — Peer-to-Peer Vehicle Rental Platform",
+  "description": "Production-grade online vehicle rental marketplace for listing, booking, fleet management, security deposit tracking, and incident resolution.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
